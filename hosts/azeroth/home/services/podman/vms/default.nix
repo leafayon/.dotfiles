@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./openmediavault.nix
+  ];
+}
