@@ -1,0 +1,59 @@
+window  {
+    background-color: transparent;
+}
+
+#input {
+    border-top: 5px solid @accent;
+    border-left: 5px solid @accent;
+    border-right: 5px solid @accent;
+    border-radius: 0;
+
+    background-color: @background;
+
+    color: @text;
+}
+#input:focus {
+    border-top-color: @green;
+    border-left-color: @green;
+    border-right-color: @green;
+
+    margin-left: 7px;
+    margin-right: 7px;
+}
+#input:focus ~ #scroll #entry {
+    margin-left: 0px;
+    margin-right: 0px;
+
+    border-left-color: @accent;
+    border-right-color: @accent;
+}
+
+#input:focus ~ #scroll #entry:selected label {
+    color: @cyan;
+}
+
+#inner-box {
+    border-top: 5px solid @accent;
+    border-bottom: 5px solid @accent;
+
+    background-color: @background;
+}
+
+#entry {
+    border-left: 5px solid @accent;
+    border-right: 5px solid @accent;
+
+    color: @text;
+}
+#entry:selected  {
+    margin-left: 7px;
+    margin-right: 7px;
+
+    border-left-color: @green;
+    border-right-color: @green;
+
+    background: none;
+}
+#entry image {
+    padding: 5px;
+}
