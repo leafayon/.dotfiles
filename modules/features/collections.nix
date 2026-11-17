@@ -25,9 +25,7 @@
       self.nixosModules.userLeaf
       self.nixosModules.regreet
       self.nixosModules.hyprland
-
       self.nixosModules.audio
-
       self.nixosModules.logitech
     ];
 
