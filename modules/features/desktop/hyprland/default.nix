@@ -8,7 +8,7 @@
   };
 
   perSystem = { config, pkgs, ... }: {
-    packages.hyprland = inputs.wrapper-modules.wrappers.hyprland.wrap {
+    packages.hyprland = inputs.nix-wrapper-modules.wrappers.hyprland.wrap {
       inherit pkgs;
 
       "hyprland.lua".content = ''''

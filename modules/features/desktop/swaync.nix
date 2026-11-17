@@ -1,6 +1,6 @@
 { inputs, ... }: {
   perSystem = { config, pkgs, ... }: {
-    packages.swaync = inputs.wrapper-modules.wrappers.swaynotificationcenter.wrap {
+    packages.swaync = inputs.nix-wrapper-modules.wrappers.swaynotificationcenter.wrap {
       inherit pkgs;
 
       settings = {

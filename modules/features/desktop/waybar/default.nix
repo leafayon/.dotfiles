@@ -13,7 +13,7 @@
   in
 
   {
-    packages.waybar = inputs.wrapper-modules.wrappers.waybar.wrap {
+    packages.waybar = inputs.nix-wrapper-modules.wrappers.waybar.wrap {
       inherit pkgs;
 
       settings = map(bar: (

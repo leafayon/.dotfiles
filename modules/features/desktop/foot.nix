@@ -1,6 +1,6 @@
 { inputs, ... }: {
   perSystem = { config, pkgs, ... }: {
-    packages.foot = inputs.wrapper-modules.wrappers.foot.wrap {
+    packages.foot = inputs.nix-wrapper-modules.wrappers.foot.wrap {
       inherit pkgs;
 
       settings = {

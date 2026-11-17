@@ -1,6 +1,6 @@
 { inputs, ... }: {
   perSystem = { pkgs, ... }: {
-    packages.yazi = inputs.wrapper-modules.wrappers.yazi.wrap {
+    packages.yazi = inputs.nix-wrapper-modules.wrappers.yazi.wrap {
       inherit pkgs;
     };
   };

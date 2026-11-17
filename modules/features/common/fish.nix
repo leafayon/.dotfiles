@@ -1,6 +1,6 @@
 { inputs, ... }: {
   perSystem = { pkgs, ... }: {
-    packages.fish = inputs.wrapper-modules.wrappers.fish.wrap {
+    packages.fish = inputs.nix-wrapper-modules.wrappers.fish.wrap {
       inherit pkgs;
 
       flags = {
