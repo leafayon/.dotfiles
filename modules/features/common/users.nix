@@ -7,7 +7,7 @@
         isNormalUser = true;
         extraGroups = ["wheel" "networkmanager"];
 
-        password = "decidueye@leaf";
+        hashedPasswordFile = "/home/leaf/.dotfiles/data/passwords/leaf-user";
       };
     };
   };
@@ -20,7 +20,7 @@
         isNormalUser = true;
         extraGroups = ["wheel"];
 
-        password = "decidueye@admin";
+        hashedPasswordFile = "/home/admin/.dotfiles/data/passwords/admin-user";
       };
     };
   };

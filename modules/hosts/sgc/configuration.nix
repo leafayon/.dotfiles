@@ -1,31 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.sgcConfiguration = {lib, pkgs, ... }: {
-    users.defaultUserShell = self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
-    users = {
-      users.leaf = {
-        isNormalUser = true;
-        description = "Leaf";
-        #hashedPasswordFile = "/home/leaf/.dotfiles/data/passwords/leaf-user";
-        extraGroups = ["wheel" "networkmanager"];
-        packages = (with pkgs; [
-          zed-discord-presence
-          discord-canary
-          git
-          gnumake
-          foot
-          wofi
-          zed-editor
-          thunar
-          btop
-          nixd
-          xarchiver
-          gparted
-          networkmanagerapplet
-          libnotify
-          playerctl
-        ]);
-      };
-    };
+  flake.nixosModules.sgcConfiguration = { lib, pkgs, ... }: {
     programs.ssh.startAgent = true;
     fonts.packages = [
       pkgs.jetbrains-mono

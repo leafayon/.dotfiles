@@ -1,29 +1,5 @@
 { self, ... }: {
   flake.nixosModules.tardisConfiguration = { lib, pkgs, ... }: {
-    users.defaultUserShell = self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
-    users = {
-      users.leaf = {
-        isNormalUser = true;
-        description = "Leaf";
-        #hashedPasswordFile = "/home/leaf/.dotfiles/data/passwords/leaf-user";
-        extraGroups = ["wheel" "networkmanager"];
-        packages = with pkgs; [
-          brightnessctl
-          gnumake
-          wofi
-          zed-editor
-          thunar
-          btop
-          nixd
-          zed-discord-presence
-          xarchiver
-          gparted
-          networkmanagerapplet
-          libnotify
-          playerctl
-        ];
-      };
-    };
     security.polkit.enable = true;
     time.timeZone = "Europe/Paris";
     console.keyMap = "fr";
