@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   main = {
     layer = "top";
     position = "top";
@@ -17,6 +17,7 @@
     ];
 
     modules-right = [
+      "battery"
       "custom/notification"
     ];
   };

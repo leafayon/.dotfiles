@@ -1,15 +1,13 @@
 { ... }: {
-  flake.nixosModules.sops = { config, pkgs, ... }: {
+  flake.nixosModules.sops = { pkgs, ... }: {
     sops = {
       age.keyFile = "/home/leaf/.config/sops/age/keys.txt";
 
-      defaultSopsFile = /home/leaf/data/secrets.yaml;
-      defaultSymlinkPath = "/run/user/1000/secrets";
-      defaultSecretsMountPoint = "/run/user/1000/secrets.d";
+      defaultSopsFile = /home/leaf/.dotfiles/data/sops/secrets.yaml;
 
       secrets = {
-        leafUser.path = "${config.sops.defaultSymlinkPath}/leaf_user";
-        adminUser.path = "${config.sops.defaultSymlinkPath}/admin_user";
+        userLeafPassword = { neededForUsers = true; };
+        userAdminPassword = { neededForUsers = true; };
       };
     };
 

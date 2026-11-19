@@ -1,9 +1,9 @@
-{ inputs, self, ... }: {
+{ inputs, ... }: {
   systems = ["x86_64-linux"];
 
-  perSystem = { system, ... }: {
-    imports = [self.flakeModules.theme];
+  imports = [inputs.nix-wrapper-modules.flakeModules.wrappers];
 
+  perSystem = { system, ... }: {
     _module.args.pkgs = import inputs.nixpkgs {
       inherit system;
 
