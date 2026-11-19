@@ -1,0 +1,8 @@
+keys:
+  - &host_tardis age1fyek2432wd35x70cg56qz42d5ksas4vgs97qn4fyvf0hem27upmsxw0xd8
+
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age:
+      - *host_tardis

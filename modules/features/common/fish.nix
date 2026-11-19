@@ -1,15 +1,13 @@
-{ inputs, ... }: {
-  perSystem = { pkgs, ... }: {
-    packages.fish = inputs.nix-wrapper-modules.wrappers.fish.wrap {
-      inherit pkgs;
+{ ... }: {
+  flake.wrappers.fish = { wlib, ... }: {
+    imports = [wlib.wrapperModules.fish];
 
-      flags = {
-        "--no-config" = false;
-      };
-
-      configFile.content = ''
-        set -g fish_greeting ""
-      '';
+    flags = {
+      "--no-config" = false;
     };
+
+    configFile.content = ''
+      set -g fish_greeting ""
+    '';
   };
 }

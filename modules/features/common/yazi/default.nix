@@ -1,7 +1,5 @@
-{ inputs, ... }: {
-  perSystem = { pkgs, ... }: {
-    packages.yazi = inputs.nix-wrapper-modules.wrappers.yazi.wrap {
-      inherit pkgs;
-    };
+{ ... }: {
+  flake.wrappers.yazi = { wlib, ... }: {
+    imports = [wlib.wrapperModules.yazi];
   };
 }

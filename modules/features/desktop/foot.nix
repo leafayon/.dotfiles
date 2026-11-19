@@ -1,16 +1,18 @@
-{ inputs, ... }: {
-  perSystem = { config, pkgs, ... }: {
-    packages.foot = inputs.nix-wrapper-modules.wrappers.foot.wrap {
-      inherit pkgs;
+{ self, ... }: {
+  flake.wrappers.foot = { config, wlib, ... }: {
+    imports = [
+      wlib.wrapperModules.foot
 
-      settings = {
-        main = {
-          font = "${config.theme.font}:size=10";
-        };
+      self.nixosModules.theme
+    ];
 
-        cursor = {
-          style = "beam";
-        };
+    settings = {
+      main = {
+        font = "${config.theme.font}:size=10";
+      };
+
+      cursor = {
+        style = "beam";
       };
     };
   };

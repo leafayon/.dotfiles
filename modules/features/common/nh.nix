@@ -1,11 +1,9 @@
-{ inputs, ... }: {
-  perSystem = { pkgs, ... }: {
-    packages.nh = inputs.nix-wrapper-modules.wrappers.nh.wrap {
-      inherit pkgs;
+{ ... }: {
+  flake.wrappers.nh = { wlib, ... }: {
+    imports = [wlib.wrapperModules.nh];
 
-      ask = true;
+    ask = true;
 
-      flake  = "~/.dotfiles";
-    };
+    flake  = "~/.dotfiles";
   };
 }

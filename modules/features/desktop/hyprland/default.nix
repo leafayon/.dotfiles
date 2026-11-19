@@ -1,24 +1,32 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.hyprland = { pkgs, ... }: {
-    programs.hyprland = {
-      enable = true;
+{ self, ... }: {
+  flake.wrappers.hyprland = { config, wlib, ... }@args: {
+    imports = [
+      wlib.wrapperModules.hyprland
 
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    };
-  };
+      self.nixosModules.theme
+    ];
 
-  perSystem = { config, pkgs, ... }: {
-    packages.hyprland = inputs.nix-wrapper-modules.wrappers.hyprland.wrap {
-      inherit pkgs;
+    "hyprland.lua".content = ''''
+      + import ./_decoration.nix { inherit config; }
+      + import ./_events.nix
+      + import ./_general.nix { inherit config; }
+      + import ./_inputs.nix
+      + import ./_keybindings.nix
+      + import ./_monitors.nix
+      + import ./_rules.nix;
 
-      "hyprland.lua".content = ''''
-        + import ./_decoration.nix { inherit config; }
-        + import ./_events.nix
-        + import ./_general.nix { inherit config; }
-        + import ./_inputs.nix
-        + import ./_keybindings.nix
-        + import ./_monitors.nix
-        + import ./_rules.nix;
+    install.modules.nixos = { config, lib, ... }:
+
+    let
+      cfg = args.config.install.getWrapperConfig config;
+    in
+
+    {
+      programs.hyprland = lib.mkIf cfg.enable {
+        enable = true;
+
+        package = cfg.wrapper;
+      };
     };
   };
 }

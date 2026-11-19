@@ -1,8 +1,8 @@
-{ inputs, ... }: {
-  perSystem = { config, pkgs, ... }:
+{ self, ... }: {
+  flake.wrappers.waybar = { config, wlib, ... }:
 
   let
-    bars = import ./_bars.nix;
+    bars = import ./_bars.nix { inherit config; };
 
     clock = import ./_modules/clock.nix { inherit config; };
     hyprland = import ./_modules/hyprland.nix { inherit config; };
@@ -13,28 +13,30 @@
   in
 
   {
-    packages.waybar = inputs.nix-wrapper-modules.wrappers.waybar.wrap {
-      inherit pkgs;
+    imports = [
+      wlib.wrapperModules.waybar
 
-      settings = map(bar: (
-        bar
-          // clock.module
-          // hyprland.module
-          // mpris.module
-          // tray.module
+      self.nixosModules.theme
+    ];
 
-          // customNotification.module
-      )) [bars.main bars.second];
+    settings = map(bar: (
+      bar
+        // clock.module
+        // hyprland.module
+        // mpris.module
+        // tray.module
 
-      "style.css".content = ''''
-        + (import ./_style.nix { inherit config; }).style
+        // customNotification.module
+    )) [bars.main bars.second];
 
-        + clock.style
-        + hyprland.style
-        + mpris.style
-        + tray.style
+    "style.css".content = ''''
+      + (import ./_style.nix { inherit config; }).style
 
-        + customNotification.style;
-    };
+      + clock.style
+      + hyprland.style
+      + mpris.style
+      + tray.style
+
+      + customNotification.style;
   };
 }

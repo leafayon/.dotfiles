@@ -1,15 +1,13 @@
-{ inputs, ... }: {
-  perSystem = { pkgs, ... }: {
-    packages.git = inputs.nix-wrapper-modules.wrappers.git.wrap {
-      inherit pkgs;
+{ ... }: {
+  flake.wrappers.git = { wlib, ... }: {
+    imports = [wlib.wrapperModules.git];
 
-      settings = {
-        init.defaultBranch = "main";
+    settings = {
+      init.defaultBranch = "main";
 
-        user = {
-          name = "leafayon";
-          email = "57141624+leafayon@users.noreply.github.com";
-        };
+      user = {
+        name = "leafayon";
+        email = "57141624+leafayon@users.noreply.github.com";
       };
     };
   };
