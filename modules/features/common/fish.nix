@@ -2,12 +2,16 @@
   flake.wrappers.fish = { wlib, ... }: {
     imports = [wlib.wrapperModules.fish];
 
-    flags = {
-      "--no-config" = false;
+    abbreviations = {
+      "lg".expansion = "lazygit";
     };
 
     configFile.content = ''
       set -g fish_greeting ""
     '';
+
+    flags = {
+      "--no-config" = false;
+    };
   };
 }
